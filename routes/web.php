@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GalleryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/img', [ProfileController::class, 'getForm'])->name('profile.img');
     Route::post('/profile/img', [ProfileController::class, 'updateImage'])->name('profile.img.post');
+
+    Route::resource('gallery', GalleryController::class);
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/student.php';
+require __DIR__ . '/staff.php';

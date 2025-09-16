@@ -62,6 +62,21 @@
             </div>
         </div>
     </nav>
+    <div class="container mt-4">
+        <h2>Gallery</h2>
+        <div class="row">
+            @php
+                $galleries = \App\Models\Gallery::with('media')->get();
+            @endphp
+            @foreach ($galleries as $gallery)
+                @foreach ($gallery->getMedia('images') as $media)
+                    <div class="col-md-3 mb-3">
+                        <img src="{{ $media->getUrl() }}" class="img-fluid rounded" alt="Gallery Image">
+                    </div>
+                @endforeach
+            @endforeach
+        </div>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
