@@ -14,13 +14,33 @@ class Post extends Model implements HasMedia
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, InteractsWithMedia, SoftDeletes;
 
-    //
+
     // protected $fillable = [
     //     'title',
     //     'content',
+    //     'ac',
+    //     'create_by',
+    //     'type',
+    //     'status',
     // ];
 
     protected $guarded = [
         'id',
     ];
+
+    public function staffCreator()
+    {
+        return $this->belongsTo(Staff::class, 'create_by', 'id');
+    }
+
+
+    public function studentCreator()
+    {
+        return $this->belongsTo(Student::class, 'create_by', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
