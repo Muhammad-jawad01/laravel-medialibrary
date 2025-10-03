@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\OpenAiController;
+use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\WeatherController;
 
@@ -100,3 +101,7 @@ Route::get('send-mail', function () {
 
     dd("Email is Sent.");
 });
+
+// category routes
+Route::resource('category', CategoryController::class);
+Route::get('category/fetch-data', [CategoryController::class, 'fetch']);
